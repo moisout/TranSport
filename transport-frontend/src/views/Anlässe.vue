@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="anlaesse">
 
   </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
 
 export default {
-  name: 'home',
+  name: 'anlaesse',
   components: {
   }
 }
