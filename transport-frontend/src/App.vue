@@ -21,7 +21,9 @@
     </v-app-bar>
     <Navigation ref="navigation" :drawer="!drawer" />
     <v-content class="site-content">
-      <router-view></router-view>
+      <transition name="fade-up" mode="out-in">
+        <router-view></router-view>
+      </transition>
     </v-content>
   </v-app>
 </template>
@@ -43,6 +45,18 @@ export default {
 </script>
 
 <style lang="scss">
+.fade-up-enter-active,
+.fade-up-leave-active {
+  transition: opacity 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.fade-up-enter-to,
+.fade-up-leave {
+  opacity: 1;
+}
+.fade-up-enter,
+.fade-up-leave-to {
+  opacity: 0;
+}
 .sidebar-triangle-container {
   height: 100%;
   width: 80px;

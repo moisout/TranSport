@@ -15,7 +15,8 @@
         :key="item.title"
         link
         class="list-item-anim"
-        :color="getCurrentRouteColor(item.route)"
+        :class="getCurrentRouteColor(item.route)"
+        @click="setRoute(item.route)"
       >
         <v-list-item-icon>
           <v-icon color="secondary">{{ item.icon }}</v-icon>
@@ -45,12 +46,12 @@ export default {
   name: 'navigation',
   data: () => ({
     items: [
-      { title: 'Home', route: 'home', icon: 'mdi-home-outline' },
+      { title: 'Home', route: '', icon: 'mdi-home-outline' },
       { title: 'Anlässe', route: 'anlaesse', icon: 'mdi-calendar-text-outline' },
       { title: 'Spieler', route: 'spieler', icon: 'mdi-account-group-outline' },
       { title: 'Fahrer', route: 'fahrer', icon: 'mdi-account-card-details-outline' },
       { title: 'Fahrzeuge', route: 'fahrzeuge', icon: 'mdi-car-multiple' },
-      { title: 'Vereinsfahrzeuge', route: 'fahrzeuge', icon: 'mdi-bus-school' }
+      { title: 'Vereinsfahrzeuge', route: 'vereinsfahrzeuge', icon: 'mdi-bus-school' }
     ],
     user: UserStore
   }),
@@ -65,8 +66,11 @@ export default {
   },
   methods: {
     getCurrentRouteColor(route) {
-      console.log(this.$route.name, route)
-      return this.$route.name === route ? 'accent' : ''
+      console.log(this.$route, route)
+      return this.$route.path.replace('/', '') === route ? 'accent' : ''
+    },
+    setRoute(route) {
+      this.$router.push(`/${route}`)
     }
   }
 }
@@ -76,6 +80,17 @@ export default {
 .list-item-anim {
   justify-content: flex-start !important;
   padding: 0 16px 0 26px !important;
+  transition: background-color 300ms;
+
+  &.accent {
+    * {
+      color: #fff !important;
+    }
+
+    .v-icon {
+      color: #fff !important;
+    }
+  }
 }
 
 .nav-bar {

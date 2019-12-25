@@ -20,6 +20,29 @@ const routes = [
     path: '/login',
     name: 'login',
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
+  },
+  {
+    path: '/anlaesse',
+    name: 'anlaesse',
+    component: () => import(/* webpackChunkName: "anlaesse" */ '../views/Anlaesse.vue')
+  },
+  {
+    path: '/spieler',
+    name: 'spieler',
+    component: () => import(/* webpackChunkName: "spieler" */ '../views/Spieler.vue')
+  },
+  {
+    path: '/fahrer',
+    name: 'fahrer',
+    component: () => import(/* webpackChunkName: "fahrer" */ '../views/Fahrer.vue')
+  },
+  {
+    path: '/fahrzeuge',
+    name: 'fahrzeuge',
+    component: () => import(/* webpackChunkName: "fahrzeuge" */ '../views/Fahrzeuge.vue'),
+    alias: [
+      '/vereinsfahrzeuge'
+    ]
   }
 ]
 

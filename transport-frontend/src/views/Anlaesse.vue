@@ -1,18 +1,18 @@
 <template>
-  <div class="spieler">
-    <v-data-table :headers="headers" :items="spieler">
-      <template v-slot:item.name="props">
+  <div class="anlaesse">
+    <v-data-table :headers="headers" :items="anlaesse">
+      <template v-slot:item.titel="props">
         <v-edit-dialog
-          :return-value.sync="props.item.name"
+          :return-value.sync="props.item.titel"
           @save="save"
           @cancel="cancel"
           @open="open"
           @close="close"
         >
-          {{ props.item.name }}
+          {{ props.item.titel }}
           <template v-slot:input>
             <v-text-field
-              v-model="props.item.name"
+              v-model="props.item.titel"
               :rules="[max25chars]"
               label="Edit"
               single-line
@@ -21,18 +21,48 @@
           </template>
         </v-edit-dialog>
       </template>
-      <template v-slot:item.nachname="props">
+      <template v-slot:item.datum="props">
         <v-edit-dialog
-          :return-value.sync="props.item.nachname"
+          :return-value.sync="props.item.datum"
           @save="save"
           @cancel="cancel"
           @open="open"
           @close="close"
         >
-          {{ props.item.nachname }}
+          {{ props.item.datum }}
+          <template v-slot:input>
+            <v-text-field v-model="props.item.datum"></v-text-field>
+            <v-date-picker v-model="props.item.datum"></v-date-picker>
+          </template>
+        </v-edit-dialog>
+      </template>
+      <template v-slot:item.zeit="props">
+        <v-edit-dialog
+          :return-value.sync="props.item.zeit"
+          @save="save"
+          @cancel="cancel"
+          @open="open"
+          @close="close"
+        >
+          {{ props.item.zeit }}
+          <template v-slot:input>
+            <v-text-field v-model="props.item.zeit"></v-text-field>
+            <v-time-picker v-model="props.item.zeit"></v-time-picker>
+          </template>
+        </v-edit-dialog>
+      </template>
+      <template v-slot:item.teilnehmer="props">
+        <v-edit-dialog
+          :return-value.sync="props.item.teilnehmer"
+          @save="save"
+          @cancel="cancel"
+          @open="open"
+          @close="close"
+        >
+          {{ props.item.teilnehmer }}
           <template v-slot:input>
             <v-text-field
-              v-model="props.item.nachname"
+              v-model="props.item.teilnehmer"
               :rules="[max25chars]"
               label="Edit"
               single-line
@@ -41,33 +71,18 @@
           </template>
         </v-edit-dialog>
       </template>
-      <template v-slot:item.geburtsdatum="props">
+      <template v-slot:item.adresse="props">
         <v-edit-dialog
-          :return-value.sync="props.item.geburtsdatum"
+          :return-value.sync="props.item.adresse"
           @save="save"
           @cancel="cancel"
           @open="open"
           @close="close"
         >
-          {{ props.item.geburtsdatum }}
-          <template v-slot:input>
-            <v-text-field v-model="props.item.geburtsdatum"></v-text-field>
-            <v-date-picker v-model="props.item.geburtsdatum"></v-date-picker>
-          </template>
-        </v-edit-dialog>
-      </template>
-      <template v-slot:item.telefonnummer="props">
-        <v-edit-dialog
-          :return-value.sync="props.item.telefonnummer"
-          @save="save"
-          @cancel="cancel"
-          @open="open"
-          @close="close"
-        >
-          {{ props.item.telefonnummer }}
+          {{ props.item.adresse }}
           <template v-slot:input>
             <v-text-field
-              v-model="props.item.telefonnummer"
+              v-model="props.item.adresse"
               :rules="[max25chars]"
               label="Edit"
               single-line
@@ -76,18 +91,18 @@
           </template>
         </v-edit-dialog>
       </template>
-      <template v-slot:item.email="props">
+      <template v-slot:item.ort="props">
         <v-edit-dialog
-          :return-value.sync="props.item.email"
+          :return-value.sync="props.item.ort"
           @save="save"
           @cancel="cancel"
           @open="open"
           @close="close"
         >
-          {{ props.item.email }}
+          {{ props.item.ort }}
           <template v-slot:input>
             <v-text-field
-              v-model="props.item.email"
+              v-model="props.item.ort"
               :rules="[max25chars]"
               label="Edit"
               single-line
@@ -108,7 +123,7 @@
 import DataStore from '@/store/data'
 
 export default {
-  name: 'spieler',
+  name: 'anlaesse',
   components: {
   },
   data: () => ({
@@ -119,17 +134,18 @@ export default {
     pagination: {},
     headers: [
       {
-        text: 'Name',
+        text: 'Titel',
         align: 'left',
         sortable: false,
-        value: 'name'
+        value: 'titel'
       },
-      { text: 'Nachname', value: 'nachname' },
-      { text: 'Geburtsdatum', value: 'geburtsdatum' },
-      { text: 'Telefonnummer', value: 'telefonnummer' },
-      { text: 'Email', value: 'email' }
+      { text: 'Datum', value: 'datum' },
+      { text: 'Zeit', value: 'zeit' },
+      { text: 'Teilnehmer', value: 'teilnehmer' },
+      { text: 'Adresse', value: 'adresse' },
+      { text: 'Ort', value: 'ort' }
     ],
-    spieler: DataStore.spieler
+    anlaesse: DataStore.anlaesse
   }),
   methods: {
     save() {
