@@ -29,7 +29,7 @@ jobs:
         yarn build --if-present
         
     - name: List output files
-      run: ls dist
+      run: ls
         
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@2.0.0
