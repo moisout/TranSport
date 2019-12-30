@@ -7,30 +7,31 @@ export default {
   login(email, password) {
     // let me = this
     this.email = email
-    // return new Promise((resolve, reject) => {
-    //   fetch('https://localhost:44362/Authentication.ashx', {
-    //     method: 'POST',
-    //     body: JSON.stringify({
-    //       email: email,
-    //       password: password
-    //     })
-    //   })
-    //     .then(response => {
-    //       if (response.ok) {
-    //         return response.json()
-    //       } else {
-    //         console.log('error', response)
-    //       }
-    //     })
-    //     .then(data => {
-    //       console.log(data)
-    //       VueCookie.set('ASP.NET_SessionId', data.sessionId, {
-    //         expires: 1
-    //       })
-    //       me.email = email
-    //       resolve(email)
-    //     })
-    // })
+    return new Promise((resolve, reject) => {
+      resolve(true)
+      // fetch('https://localhost:44362/Authentication.ashx', {
+      //   method: 'POST',
+      //   body: JSON.stringify({
+      //     email: email,
+      //     password: password
+      //   })
+      // })
+      //   .then(response => {
+      //     if (response.ok) {
+      //       return response.json()
+      //     } else {
+      //       console.log('error', response)
+      //     }
+      //   })
+      //   .then(data => {
+      //     console.log(data)
+      //     VueCookie.set('ASP.NET_SessionId', data.sessionId, {
+      //       expires: 1
+      //     })
+      //     me.email = email
+      //     resolve(email)
+      //   })
+    })
   },
   getEmail() {
     return this.email
