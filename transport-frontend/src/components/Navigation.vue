@@ -18,7 +18,7 @@
         :class="getCurrentRouteColor(item.route)"
         @click="setRoute(item.route)"
       >
-        <v-list-item-icon>
+        <v-list-item-icon v-if="item.visible === true">
           <v-icon color="secondary">{{ item.icon }}</v-icon>
         </v-list-item-icon>
 
@@ -46,12 +46,37 @@ export default {
   name: 'navigation',
   data: () => ({
     items: [
-      { title: 'Home', route: '', icon: 'mdi-home-outline' },
-      { title: 'Anlässe', route: 'anlaesse', icon: 'mdi-calendar-text-outline' },
-      { title: 'Spieler', route: 'spieler', icon: 'mdi-account-group-outline' },
-      { title: 'Fahrer', route: 'fahrer', icon: 'mdi-account-card-details-outline' },
-      { title: 'Fahrzeuge', route: 'fahrzeuge', icon: 'mdi-car-multiple' },
-      { title: 'Vereinsfahrzeuge', route: 'vereinsfahrzeuge', icon: 'mdi-bus-school' }
+      { title: 'Home', route: '', icon: 'mdi-home-outline', visible: true },
+      {
+        title: 'Anlässe',
+        route: 'anlaesse',
+        icon: 'mdi-calendar-text-outline',
+        visible: () => UserStore.email === 'spieler' || UserStore.email === 'trainer' || UserStore.email === 'fahrer'
+      },
+      {
+        title: 'Spieler',
+        route: 'spieler',
+        icon: 'mdi-account-group-outline',
+        visible: () => UserStore.email === 'trainer'
+      },
+      {
+        title: 'Fahrer',
+        route: 'fahrer',
+        icon: 'mdi-account-card-details-outline',
+        visible: () => UserStore.email === 'trainer'
+      },
+      {
+        title: 'Fahrzeuge',
+        route: 'fahrzeuge',
+        icon: 'mdi-car-multiple',
+        visible: () => UserStore.email === 'trainer' || UserStore.email === 'fahrer'
+      },
+      {
+        title: 'Vereinsfahrzeuge',
+        route: 'vereinsfahrzeuge',
+        icon: 'mdi-bus-school',
+        visible: () => UserStore.email === 'trainer' || UserStore.email === 'fahrer'
+      }
     ],
     user: UserStore
   }),

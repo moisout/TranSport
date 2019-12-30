@@ -7,6 +7,7 @@
             <v-toolbar-title>Login</v-toolbar-title>
           </v-toolbar>
           <v-card-text>
+            <p class="red" v-if="errorMsg">{{ errorMsg }}</p>
             <v-form v-model="valid">
               <v-text-field
                 label="Email"
@@ -49,6 +50,7 @@ export default {
     valid: false,
     email: null,
     password: null,
+    errorMsg: null,
     emailRules: [
       v => !!v || 'Email erforderlich'
     ],
@@ -58,8 +60,15 @@ export default {
   }),
   methods: {
     login() {
+      let me = this
       if (this.email && this.password && this.valid) {
-        UserStore.login(this.email, this.password).then(response => this.$router.push('/'))
+        UserStore.login(this.email, this.password)
+          .then(
+            response => this.$router.push('/'),
+            error => {
+              me.errorMsg = error
+            }
+          )
       }
     }
   }
