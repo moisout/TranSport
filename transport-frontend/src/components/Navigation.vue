@@ -66,7 +66,6 @@ export default {
   },
   methods: {
     getCurrentRouteColor(route) {
-      console.log(this.$route, route)
       return this.$route.path.replace('/', '') === route ? 'accent' : ''
     },
     setRoute(route) {

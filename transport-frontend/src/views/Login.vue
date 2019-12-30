@@ -31,7 +31,6 @@
             </v-form>
           </v-card-text>
           <v-card-actions>
-            <v-btn small text @click.stop="openRegister">Noch kein Account? Registrieren</v-btn>
             <v-spacer></v-spacer>
             <v-btn color="primary" @click.stop="login" :disabled="!valid">Login</v-btn>
           </v-card-actions>
@@ -60,8 +59,7 @@ export default {
   methods: {
     login() {
       if (this.email && this.password && this.valid) {
-        UserStore.login(this.email, this.password)
-        this.$router.push('/')
+        UserStore.login(this.email, this.password).then(response => this.$router.push('/'))
       }
     }
   }
