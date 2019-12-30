@@ -9,7 +9,7 @@
     elevation="4"
     absolute
   >
-    <v-list dense>
+    <v-list dense v-if="user.email">
       <v-list-item
         v-for="item in items"
         :key="item.title"
